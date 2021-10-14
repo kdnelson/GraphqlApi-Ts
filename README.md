@@ -13,3 +13,4 @@ Setup "outDir": "./build" in tsconfig.json
 Setup in scripts "build": "rm -rf build/ && prettier --write src/ && tsc"
 npm i express body-parser dotenv
 npm i --save-dev @types/express @types/body-parser @types/dotenv
+
