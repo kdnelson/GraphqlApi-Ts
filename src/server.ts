@@ -1,11 +1,13 @@
 import http from 'http';
 import express from 'express';
+import * as graphqlExpress from 'express-graphql'
 import logging from './config/logging';
 import config from './config/config';
-import pongRoute from './routes/pong'
+import pongRoute, { use } from './routes/pong'
 
 const NAMESPACE = 'Server';
 const router = express();
+const schema = require('./graphql');
 
 /**  Logging the request */
 router.use((req: any, res: any, next: any) => {
@@ -24,7 +26,7 @@ router.use(express.json());
 
 /**  API rules */
 router.use((req: any, res: any, next: any) => {
-    res.header('Access-Control-Allow-Origin', '*');  // for product, remove this and add allowed Urls
+    res.header('Access-Control-Allow-Origin', '*');  // for production, remove this and add allowed Urls
     res.header('Access-Control-Allow-Headers', 'Origin, X-Request-With, Content-Type, Accept, Authorization');
 
     if(req.method == 'OPTIONS'){
@@ -45,6 +47,12 @@ router.use((req: any, res: any, next: any) => {
         message: error.message
     });
 });
+
+/** Graphql */
+router.use('./graphql', graphqlExpress.graphqlHTTP({
+    schema,
+    graphiql: true
+}))
 
 /** Create the server */
 const httpServer = http.createServer(router);

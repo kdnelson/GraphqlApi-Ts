@@ -21,6 +21,7 @@ Setup "outDir": "./build" in tsconfig.json
 Setup in scripts "build": "rm -rf build/ && prettier --write src/ && tsc"
 npm i express dotenv
 npm i --save-dev @types/express @types/dotenv
+npm i -g express-graphql graphql
 
 Running API:
 > npm start
