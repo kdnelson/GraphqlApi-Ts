@@ -54,6 +54,16 @@ router.use('./graphql', graphqlExpress.graphqlHTTP({
     graphiql: true
 }))
 
+// const resultAppContext = (req: any, res: any): AppContext => {
+//     return { user:  }
+// }
+// router.use('./graphql', 
+//     graphqlExpress((req: any, res: any, options: any) => ({
+//         ...schema,
+//         context: resultAppContext(req, res)
+//     }))
+// )
+
 /** Create the server */
 const httpServer = http.createServer(router);
 httpServer.listen(config.server.port, () => logging.info(
