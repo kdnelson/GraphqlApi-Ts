@@ -3,11 +3,11 @@ import express from 'express';
 import * as graphqlExpress from 'express-graphql'
 import logging from './config/logging';
 import config from './config/config';
-import pongRoute, { use } from './routes/pong'
+import pongRoute from './routes/pongRoute'
+import schema from './graphql';
 
 const NAMESPACE = 'Server';
 const router = express();
-const schema = require('./graphql');
 
 /**  Logging the request */
 router.use((req: any, res: any, next: any) => {
@@ -40,6 +40,12 @@ router.use((req: any, res: any, next: any) => {
 /** Routes */
 router.use('/test', pongRoute);
 
+/** Graphql */
+router.use('/src/graphql', graphqlExpress.graphqlHTTP({
+    schema: schema,
+    graphiql: true
+}))
+
 /** Error handling */
 router.use((req: any, res: any, next: any) => {
     const error = new Error('not found');
@@ -47,22 +53,6 @@ router.use((req: any, res: any, next: any) => {
         message: error.message
     });
 });
-
-/** Graphql */
-router.use('./graphql', graphqlExpress.graphqlHTTP({
-    schema,
-    graphiql: true
-}))
-
-// const resultAppContext = (req: any, res: any): AppContext => {
-//     return { user:  }
-// }
-// router.use('./graphql', 
-//     graphqlExpress((req: any, res: any, options: any) => ({
-//         ...schema,
-//         context: resultAppContext(req, res)
-//     }))
-// )
 
 /** Create the server */
 const httpServer = http.createServer(router);

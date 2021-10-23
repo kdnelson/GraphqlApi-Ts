@@ -1,29 +1,16 @@
-const stubData = require("./data/stub_data.json");
-const user = require('./types/user');
 import {
-    GraphQLObjectType, 
-    GraphQLSchema, 
+    GraphQLObjectType,  
     GraphQLInt, 
-    GraphQLString, 
-    GraphQLList
+    GraphQLString
 } from 'graphql'
+import userType from '../types/userType';
+const stubData = require("../data/stub_data.json");
 
-export const rootQuery = new GraphQLObjectType({
-    name: "RootQueryType",
-    fields: {
-        getAllUsers: { 
-            type: new GraphQLList(user),
-            args: { id: { type: GraphQLInt }},
-            resolve(parent, args) { return stubData }
-        }
-    }
-})
-
-export const mutation = new GraphQLObjectType({
+export default new GraphQLObjectType({
     name: "Mutation",
     fields: {
         createUser: { 
-            type: user,
+            type: userType,
             args: { 
                 first_name: { type: GraphQLString },
                 last_name: { type: GraphQLString },
@@ -44,7 +31,7 @@ export const mutation = new GraphQLObjectType({
             }
         },
         updateUser: { 
-            type: user,
+            type: userType,
             args: { 
                 id: { type: GraphQLInt },
                 first_name: { type: GraphQLString },
@@ -66,7 +53,7 @@ export const mutation = new GraphQLObjectType({
             }
         },
         deleteUser: { 
-            type: user,
+            type: userType,
             args: { 
                 id: { type: GraphQLInt }
             },
@@ -80,5 +67,3 @@ export const mutation = new GraphQLObjectType({
         }
     }
 })
-
-export default new GraphQLSchema({ query: rootQuery, mutation: mutation })

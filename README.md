@@ -17,7 +17,10 @@ npm init
 npm i -g typescript nodemon ts-node prettier
 npm run tsc -- --init // creates a tsconfig.json
 tsc --init
-Setup "outDir": "./build" in tsconfig.json
+Setup tsconfig.json
+    "outDir": "./build"
+    "experimentalDecorators": true,                   /* Enable experimental support for TC39 stage 2 draft decorators. */
+    "emitDecoratorMetadata": true,                    /* Emit design-type metadata for decorated declarations in source files. */
 Setup in scripts "build": "rm -rf build/ && prettier --write src/ && tsc"
 npm i express dotenv
 npm i --save-dev @types/express @types/dotenv
@@ -32,3 +35,33 @@ Response: pong
 
 Build API:
 > npm run build
+
+Sample queries:
+
+{
+  getAllUsers {
+    id
+    first_name
+    last_name
+    email
+    gender
+    ip_address
+  }
+}
+
+mutation {
+  createUser(first_name: "Kris", last_name: "Nelson", email: "kris.d.nelson@gmail.com", gender: "Male", ip_address: "21.90.121.0") {
+    first_name
+  }
+}
+
+mutation {
+  updateUser(id: 11, first_name: "Romeo", last_name: "Withrington", email: "rwithringtona@yellowbook.com", gender: "Female", ip_address: "149.43.103.2") {
+    first_name
+    gender
+  }
+}
+
+mutation {
+  deleteUser(id: 13) {id}
+}
