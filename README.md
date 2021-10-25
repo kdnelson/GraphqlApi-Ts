@@ -63,5 +63,5 @@ mutation {
 }
 
 mutation {
-  deleteUser(id: 13) {id}
+  deleteUser(id: 1) {id}
 }
