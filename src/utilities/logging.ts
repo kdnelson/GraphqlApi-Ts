@@ -1,3 +1,5 @@
+import config from "./config";
+
 const getTimeStamp = (): string => {
     return new Date().toISOString();
 }
@@ -32,6 +34,15 @@ const debug = (namespace: string, message: string, object?: any) => {
     } else {
         console.debug(`[${getTimeStamp()}] [DEBUG] [${namespace}] ${message}`);
     }
+}
+
+export const logRequest = (req: any, res: any, next: any) => {
+    info(config.server.namespace, `METHOD - [${req.method}], URL - [${req.url}]`);
+    res.on('Finish', () => {
+        info(config.server.namespace, `METHOD - [${req.method}], URL - [${req.url}], STATUS - [${res.statusCode}]`);
+    });
+
+    next();
 }
 
 export default {

@@ -1,60 +1,22 @@
 import http from 'http';
 import express from 'express';
-import * as graphqlExpress from 'express-graphql'
-import logging from './config/logging';
-import config from './config/config';
-import pongRoute from './routes/pongRoute'
-import schema from './graphql';
+import logging, { logRequest } from './utilities/logging';
+import config from './utilities/config';
+import graphqlRoute from './routes/graphqlRoute';
+import { rules } from './utilities/rules';
+import { errors } from './utilities/errors';
 
-const NAMESPACE = 'Server';
-const router = express();
+const app = express();
 
-/**  Logging the request */
-router.use((req: any, res: any, next: any) => {
-    logging.info(NAMESPACE, `METHOD - [${req.method}], URL - [${req.url}], IP - [${req.socket.remoteAddress}]`);
-    res.on('Finish', () => {
-        logging.info(
-            NAMESPACE, `METHOD - [${req.method}], URL - [${req.url}], IP - [${req.socket.remoteAddress}], STATUS - [${res.statusCode}]`);
-    });
-
-    next();
-});
-
-/**  Parse the request */
-router.use(express.urlencoded({ extended: false}));
-router.use(express.json());
-
-/**  API rules */
-router.use((req: any, res: any, next: any) => {
-    res.header('Access-Control-Allow-Origin', '*');  // for production, remove this and add allowed Urls
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Request-With, Content-Type, Accept, Authorization');
-
-    if(req.method == 'OPTIONS'){
-        res.header('Access-Control-Allow-Methods', 'GET PATCH DELETE POST PUT');
-        return res.status(200).json({});
-    }
-
-    next();
-});
-
-/** Routes */
-router.use('/test', pongRoute);
-
-/** Graphql */
-router.use('/src/graphql', graphqlExpress.graphqlHTTP({
-    schema: schema,
-    graphiql: true
-}))
-
-/** Error handling */
-router.use((req: any, res: any, next: any) => {
-    const error = new Error('not found');
-    return res.status(404).json({
-        message: error.message
-    });
-});
+/** Server Middleware */
+app.use(logRequest);
+app.use(express.urlencoded({ extended: false}));
+app.use(express.json());
+app.use(rules);
+app.use('/src/graphql', graphqlRoute)
+app.use(errors);
 
 /** Create the server */
-const httpServer = http.createServer(router);
+const httpServer = http.createServer(app);
 httpServer.listen(config.server.port, () => logging.info(
-    NAMESPACE, `Server running on ${config.server.hostname}:${config.server.port}`));
+    config.server.namespace, `Server running on ${config.server.hostname}:${config.server.port}`));
