@@ -13,7 +13,9 @@ export const createUserMutation = {
         gender: { type: GraphQLString },
         ip_address: { type: GraphQLString }
     },
-    resolve: createUserResolver
+    resolve(parent: any, args: {[argName: string]: any}) {
+        createUserResolver(parent, args)
+    }
 }
 
 export default createUserMutation

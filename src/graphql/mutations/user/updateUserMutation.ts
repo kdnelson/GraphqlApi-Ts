@@ -15,7 +15,9 @@ export const updateUserMutation = {
         gender: { type: GraphQLString },
         ip_address: { type: GraphQLString }
     },
-    resolve: updateUserResolver
+    resolve(parent: any, args: {[argName: string]: any}) {
+        updateUserResolver(parent, args)
+    }
 }
 
 export default updateUserMutation

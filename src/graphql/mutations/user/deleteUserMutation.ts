@@ -9,7 +9,9 @@ export const deleteUserMutation = {
     args: { 
         id: { type: GraphQLInt }
     },
-    resolver: deleteUserResolver
+    resolve(parent: any, args: {[argName: string]: any}) {
+        deleteUserResolver(parent, args)
+    }
 }
 
 export default deleteUserMutation

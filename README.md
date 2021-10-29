@@ -39,7 +39,7 @@ Build API:
 Sample queries:
 
 {
-  getAllUsers {
+  getUsers {
     id
     first_name
     last_name
@@ -63,5 +63,5 @@ mutation {
 }
 
 mutation {
-  deleteUser(id: 1) {id}
+  deleteUser(id: 1) {first_name}
 }
