@@ -1,11 +1,11 @@
-import context from "../../data/context";
+// import context from "../../data/context";
 
-export const deleteUserResolver = (parent: any, args: {[argName: string]: any}) => {
-    context.forEach( (item: any, index: any) => {
-        if(item.id === args.id) {
-            context.splice(index, 1);
-        }        
-    });
-}
+// export const deleteUserResolver = (parent: any, args: {[argName: string]: any}) => {
+//     context.forEach( (item: any, index: any) => {
+//         if(item.id === args.id) {
+//             context.splice(index, 1);
+//         }        
+//     });
+// }
 
-export default deleteUserResolver
+// export default deleteUserResolver

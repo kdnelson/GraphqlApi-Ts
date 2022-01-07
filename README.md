@@ -1,8 +1,10 @@
 # ClutchApi
 A Node Api using Express, Graphql, and nodemon - written in Typescript
 
-How to build:
+How to build Node API:
 https://www.youtube.com/watch?v=zRo2tvQpus8
+How to add complex GraphGL data 
+https://www.youtube.com/watch?v=PpCF8yRtd_A&list=PLuxS_TWA04F7539hy9rIoReOHv9iHtrZp&index=35
 
 Note:
 body-parser and @types/body-parser were added to express, so no need to download seperately
@@ -37,6 +39,33 @@ Build API:
 > npm run build
 
 Sample queries:
+
+{
+  getOwners {
+    id
+    name
+  }
+}
+
+mutation {
+  getOwner(id: 2) {name}
+}
+
+{
+  getOwners {
+    id
+    name
+  }
+}
+
+mutation {
+  getWebsite(id: 2) {name}
+}
+
+
+
+
+// Another less complicated data source
 
 {
   getUsers {

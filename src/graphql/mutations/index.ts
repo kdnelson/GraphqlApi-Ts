@@ -1,15 +1,14 @@
 import {
-    GraphQLObjectType,
+    GraphQLObjectType
 } from 'graphql'
-import createUserMutation from './user/createUserMutation';
-import deleteUserMutation from './user/deleteUserMutation';
-import updateUserMutation from './user/updateUserMutation';
+import getOwnerMutation from './owner/getOwnerMutation'
+import getWebsiteMutation from './website/getWebsiteMutation'
 
 export default new GraphQLObjectType({
     name: "Mutations",
+    description: "",
     fields: {
-        createUser: createUserMutation,
-        deleteUser: deleteUserMutation,
-        updateUser: updateUserMutation
+        getOwner: getOwnerMutation,
+        getWebsite: getWebsiteMutation,
     }
 })
