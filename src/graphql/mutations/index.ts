@@ -2,6 +2,7 @@ import {
     GraphQLObjectType
 } from 'graphql'
 import getOwnerMutation from './owner/getOwnerMutation'
+import getOwnerDetailMutation from './ownerDetail/getOwnerDetailMutation'
 import getWebsiteMutation from './website/getWebsiteMutation'
 
 export default new GraphQLObjectType({
@@ -10,5 +11,6 @@ export default new GraphQLObjectType({
     fields: {
         getOwner: getOwnerMutation,
         getWebsite: getWebsiteMutation,
+        getOwnerDetails: getOwnerDetailMutation,
     }
 })

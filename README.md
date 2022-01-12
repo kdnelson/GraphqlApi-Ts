@@ -52,7 +52,7 @@ mutation {
 }
 
 {
-  getOwners {
+  getWebsites {
     id
     name
   }
@@ -62,7 +62,12 @@ mutation {
   getWebsite(id: 2) {name}
 }
 
-
+{
+  getOwnerDetails {
+    id
+    name
+  }
+}
 
 
 // Another less complicated data source
