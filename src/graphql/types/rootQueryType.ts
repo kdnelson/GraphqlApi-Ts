@@ -1,16 +1,12 @@
 import {
     GraphQLObjectType,
-    GraphQLInt,
     GraphQLList
 } from 'graphql'
 
 import ownerType from './ownerType';
 import websiteType from './websiteType';
 import context from './../data/context'
-
-// Another less complicated data source
-//import userType from './userType';
-//const stubData = require("../data/stub_data.json");
+import ownerDetailType from './ownerDetailType';
 
 export default new GraphQLObjectType({
     name: "RootQueryType",
@@ -19,14 +15,17 @@ export default new GraphQLObjectType({
         getOwners: { 
             type: new GraphQLList(ownerType),
             description: '',
-            args: { id: { type: GraphQLInt }},
             resolve() { return context.owners }
         },
         getWebsites: { 
             type: new GraphQLList(websiteType),
             description: '',
-            args: { id: { type: GraphQLInt }},
             resolve() { return context.websites }
+        },
+        getOwnerDetails: { 
+            type: new GraphQLList(ownerDetailType),
+            description: '',
+            resolve() { return context.ownerDetails }
         }
     }
 })

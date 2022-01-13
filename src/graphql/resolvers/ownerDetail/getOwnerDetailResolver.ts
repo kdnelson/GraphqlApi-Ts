@@ -1,8 +1,7 @@
 import context from './../../data/context'
 
-export const getOwnerDetailResolver = () => {
-    console.log(context.ownerDetails)
-    return context.ownerDetails;
+export const getOwnerDetailResolver = (_parent: any, id: number) => {
+    return context.ownerDetails.find(o => o.id === id)
 }
 
 export default getOwnerDetailResolver

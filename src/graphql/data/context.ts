@@ -28,13 +28,12 @@ function getWebsites() : Website[] {
         { id: 3, name: 'Amazon', ownerId: 3 },
         { id: 4, name: 'Github', ownerId: 1 },
         { id: 5, name: 'NFL.com', ownerId: 1 },
-        { id: 6, name: 'TikTok', ownerId: 3 },
-        { id: 7, name: 'Fox News', ownerId: 1 },
+        { id: 6, name: 'TikTok', ownerId: 3 }
     ]
 }
 
 function getOwnerDetails() : OwnerDetail[] {
-    let index: number = 0;
+    let index: number = 1;
     let ownerDetails: OwnerDetail[] = [];
     getOwners().forEach(o => {
         let ownerDetail = new OwnerDetail(index, o.name, [])

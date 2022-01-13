@@ -38,64 +38,101 @@ Response: pong
 Build API:
 > npm run build
 
-Sample queries:
 
-{
-  getOwners {
-    id
-    name
-  }
-}
+------------------- Todo -------------------
 
-mutation {
-  getOwner(id: 2) {name}
-}
-
-{
-  getWebsites {
-    id
-    name
-  }
-}
-
-mutation {
-  getWebsite(id: 2) {name}
-}
-
-{
-  getOwnerDetails {
-    id
-    name
-  }
-}
+Finish OwnerDetail mutation CRUD
+Add better error checking on all CRUD operation
+Get tests running and passing
+Add authentication for requests
 
 
-// Another less complicated data source
+------------------- Sample queries -------------------
 
-{
-  getUsers {
-    id
-    first_name
-    last_name
-    email
-    gender
-    ip_address
-  }
-}
 
-mutation {
-  createUser(first_name: "Kris", last_name: "Nelson", email: "kris.d.nelson@gmail.com", gender: "Male", ip_address: "21.90.121.0") {
-    first_name
-  }
-}
+# {
+#   getOwners {
+#     id
+#     name
+#   }
+# }
 
-mutation {
-  updateUser(id: 11, first_name: "Romeo", last_name: "Withrington", email: "rwithringtona@yellowbook.com", gender: "Female", ip_address: "149.43.103.2") {
-    first_name
-    gender
-  }
-}
+# mutation {
+#   getOwner(id: 2) {
+#     name
+#   }
+# }
 
-mutation {
-  deleteUser(id: 1) {first_name}
-}
+# mutation {
+#   createOwner(name: "Ian") {
+#     name
+#   }
+# }
+
+# mutation {
+#   updateOwner(id: 3, name: "Dan") {
+#     name
+#   }
+# }
+
+# mutation {
+#   deleteOwner(id: 3) {
+#     name
+#   }
+# }
+
+# {
+#   getWebsites {
+#     id
+#     name
+# 		ownerId
+#   }
+# }
+
+# mutation {
+#   getWebsite(id: 2) {
+#     name
+#   }
+# }
+
+# mutation {
+#   createWebsite(name: "Fox News") {
+#     name
+#   }
+# }
+
+# mutation {
+#   updateWebsite(id: 7, name: "Fox News", ownerId: 2) {
+#     name
+#   }
+# }
+
+# mutation {
+#   deleteWebsite(id: 3) {
+#     name
+#   }
+# }
+
+# {
+#   getOwnerDetails {
+#     id
+#     name
+# 		websites {
+# 		  id
+#         name
+#         ownerId
+# 		}
+#   }
+# }
+
+# mutation {
+#   getOwnerDetails(id: 1) {
+#     id
+#     name
+# 		websites {
+# 		  id
+#         name
+#         ownerId
+# 		}
+#   }
+# }

@@ -1,10 +1,17 @@
+import { 
+    GraphQLInt,
+    GraphQLNonNull 
+} from 'graphql';
 import ownerDetailType from '../../types/ownerDetailType';
 import getOwnerDetailResolver from '../../resolvers/ownerDetail/getOwnerDetailResolver';
 
 export const getOwnerDetailMutation = {
     type: ownerDetailType,
-    resolve() {
-        return getOwnerDetailResolver()
+    args: { 
+        id: { type: GraphQLNonNull(GraphQLInt) }
+    },
+    resolve(parent: any, args: {[argName: string]: any}) {
+        return getOwnerDetailResolver(parent, args.id)
     }
 }
 
