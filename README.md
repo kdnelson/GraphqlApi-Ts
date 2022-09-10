@@ -1,5 +1,5 @@
 # ClutchApi
-A Node Api using Express, Graphql, and nodemon - written in Typescript
+NodeTS Api using Express, Graphql.  Need to refactor to Trav template
 
 How to build Node API:
 https://www.youtube.com/watch?v=zRo2tvQpus8
