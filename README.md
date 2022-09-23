@@ -1,5 +1,6 @@
 # ClutchApi
 NodeTS Api using Express, Graphql.  Need to refactor to Trav template
+I plan to use this code for ClutchAPI
 
 How to build Node API:
 https://www.youtube.com/watch?v=zRo2tvQpus8
